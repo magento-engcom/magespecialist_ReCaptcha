@@ -20,10 +20,12 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="MSP_ReCaptcha" setup_version="1.4.4">
-        <sequence>
-            <module name="MSP_SecuritySuiteCommon"/>
-        </sequence>
-    </module>
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="controller_action_predispatch_adminhtml_auth_forgotpassword">
+        <observer name="msp_recaptcha" instance="MSP\ReCaptcha\Observer\Adminhtml\ForgotPasswordObserver"/>
+    </event>
+    <event name="admin_user_authenticate_before">
+        <observer name="msp_recaptcha" instance="MSP\ReCaptcha\Observer\Adminhtml\LoginObserver" />
+    </event>
 </config>

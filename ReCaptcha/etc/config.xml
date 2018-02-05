@@ -20,10 +20,25 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="MSP_ReCaptcha" setup_version="1.4.4">
-        <sequence>
-            <module name="MSP_SecuritySuiteCommon"/>
-        </sequence>
-    </module>
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <msp_securitysuite_recaptcha>
+            <backend>
+                <enabled>0</enabled>
+                <size>normal</size>
+                <theme>light</theme>
+            </backend>
+            <frontend>
+                <enabled>0</enabled>
+                <size>normal</size>
+                <type>standard</type>
+                <position>inline</position>
+                <theme>light</theme>
+                <enabled_login>1</enabled_login>
+                <enabled_forgot>1</enabled_forgot>
+                <enabled_contact>1</enabled_contact>
+                <enabled_create>1</enabled_create>
+            </frontend>
+        </msp_securitysuite_recaptcha>
+    </default>
 </config>

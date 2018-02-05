@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<!--
+<?php
 /**
  * MageSpecialist
  *
@@ -18,12 +17,41 @@
  * @copyright  Copyright (c) 2017 Skeeller srl (http://www.magespecialist.it)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
--->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="MSP_ReCaptcha" setup_version="1.4.4">
-        <sequence>
-            <module name="MSP_SecuritySuiteCommon"/>
-        </sequence>
-    </module>
-</config>
+
+
+namespace MSP\ReCaptcha\Block\Frontend;
+
+use Magento\Framework\View\Element\Template;
+use MSP\ReCaptcha\Model\Config;
+
+class ReCaptcha extends Template
+{
+    /**
+     * @var Config
+     */
+    private $config;
+
+    /**
+     * @var array
+     */
+    private $data;
+
+    public function __construct(
+        Template\Context $context,
+        Config $config,
+        array $data = []
+    ) {
+        parent::__construct($context, $data);
+        $this->config = $config;
+        $this->data = $data;
+    }
+
+    /**
+     * Get public reCaptcha key
+     * @return string
+     */
+    public function getPublicKey()
+    {
+        return $this->config->getPublicKey();
+    }
+}
