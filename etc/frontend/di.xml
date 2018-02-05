@@ -21,22 +21,14 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="MSP\ReCaptcha\Api\ValidateInterface" type="MSP\ReCaptcha\Model\Validate"/>
 
-    <type name="Magento\Framework\Console\CommandList">
+    <type name="Magento\Checkout\Block\Onepage">
         <arguments>
-            <argument name="commands" xsi:type="array">
-                <item name="msp_recaptcha" xsi:type="object">MSP\ReCaptcha\Command\ReCaptcha</item>
+            <argument name="layoutProcessors" xsi:type="array">
+                <item name="msp_recaptcha" xsi:type="object">\MSP\ReCaptcha\Block\LayoutProcessor\Checkout\Onepage</item>
             </argument>
         </arguments>
     </type>
-    <type name="Magento\Framework\View\Asset\Minification">
-        <plugin name="msp-exclude" type="MSP\ReCaptcha\Plugin\ExcludeFromMinification"/>
-    </type>
-
-    <!-- Default HTTP response provider -->
-    <preference for="MSP\ReCaptcha\Model\Provider\ResponseProviderInterface"
-                type="MSP\ReCaptcha\Model\Provider\Response\DefaultResponseProvider"/>
 
     <!-- User login -->
     <virtualType name="MSP\ReCaptcha\Model\Provider\Failure\LoginObserver"
@@ -46,7 +38,7 @@
                       xsi:type="object">MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl\BeforeAuthUrlProvider</argument>
         </arguments>
     </virtualType>
-    <virtualType name="MSP\ReCaptcha\Observer\Frontend\ForgotPasswordObserver"
+    <virtualType name="MSP\ReCaptcha\Observer\Frontend\LoginObserver"
                  type="MSP\ReCaptcha\Observer\ReCaptchaObserver">
         <arguments>
             <argument name="enableConfigFlag"
@@ -130,31 +122,8 @@
                       xsi:type="object">MSP\ReCaptcha\Model\Provider\Failure\AjaxResponseFailure</argument>
         </arguments>
     </virtualType>
-
-    <!-- Backend Login -->
-    <virtualType name="MSP\ReCaptcha\Observer\Adminhtml\LoginObserver"
-                 type="MSP\ReCaptcha\Observer\ReCaptchaObserver">
-        <arguments>
-            <argument name="area" xsi:type="string">adminhtml</argument>
-            <argument name="failureProvider"
-                      xsi:type="object">MSP\ReCaptcha\Model\Provider\Failure\AuthenticationExceptionFailure</argument>
-        </arguments>
-    </virtualType>
-
-    <!-- Backend Forgot password -->
-    <virtualType name="MSP\ReCaptcha\Model\Provider\Failure\ForgotPasswordObserver"
-                 type="MSP\ReCaptcha\Model\Provider\Failure\ObserverRedirectFailure">
-        <arguments>
-            <argument name="redirectUrl" xsi:type="string">*/*/forgotpassword</argument>
-        </arguments>
-    </virtualType>
-    <virtualType name="MSP\ReCaptcha\Observer\Adminhtml\ForgotPasswordObserver"
-                 type="MSP\ReCaptcha\Observer\ReCaptchaObserver">
-        <arguments>
-            <argument name="area" xsi:type="string">adminhtml</argument>
-            <argument name="failureProvider"
-                      xsi:type="object">MSP\ReCaptcha\Model\Provider\Failure\ForgotPasswordObserver</argument>
-            <argument name="requireRequestParam" xsi:type="string">email</argument>
-        </arguments>
-    </virtualType>
+    <type name="Magento\Customer\Block\Account\AuthenticationPopup">
+        <plugin sortOrder="1" name="mSPReCaptchaAuthenticationPopup"
+                type="MSP\ReCaptcha\Plugin\Block\Account\AuthenticationPopupPlugin"/>
+    </type>
 </config>
