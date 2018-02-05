@@ -46,7 +46,7 @@
                       xsi:type="object">MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl\BeforeAuthUrlProvider</argument>
         </arguments>
     </virtualType>
-    <virtualType name="MSP\ReCaptcha\Observer\Frontend\ForgotPasswordObserver"
+    <virtualType name="MSP\ReCaptcha\Observer\Frontend\LoginObserver"
                  type="MSP\ReCaptcha\Observer\ReCaptchaObserver">
         <arguments>
             <argument name="enableConfigFlag"
