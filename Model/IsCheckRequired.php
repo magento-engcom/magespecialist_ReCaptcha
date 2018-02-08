@@ -69,9 +69,9 @@ class IsCheckRequired implements IsCheckRequiredInterface
         ScopeConfigInterface $scopeConfig,
         RequestInterface $request,
         Config $config,
-        $area = '',
-        $enableConfigFlag = '',
-        $requireRequestParam = false
+        $area = null,
+        $enableConfigFlag = null,
+        $requireRequestParam = null
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->config = $config;
