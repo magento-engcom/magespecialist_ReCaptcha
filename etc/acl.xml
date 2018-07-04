@@ -27,7 +27,10 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="MSP_SecuritySuite::config">
+                            <resource id="MSP_SecuritySuite::config"
+                                      title="Security Suite"
+                                      translate="title"
+                                      sortOrder="40">
                                 <resource id="MSP_ReCaptcha::config"
                                           title="ReCaptcha"
                                           translate="title"

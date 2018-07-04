@@ -22,11 +22,15 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
+        <tab id="security" translate="label" sortOrder="200">
+            <label>Security</label>
+        </tab>
+
         <section id="msp_securitysuite_recaptcha" translate="label" type="text" sortOrder="510" showInDefault="1"
                  showInWebsite="1" showInStore="1">
             <class>separator-top</class>
             <label>Google reCaptcha</label>
-            <tab>general</tab>
+            <tab>security</tab>
             <resource>MSP_ReCaptcha::config</resource>
 
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
