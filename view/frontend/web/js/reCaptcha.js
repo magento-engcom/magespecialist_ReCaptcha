@@ -169,12 +169,13 @@ define(
                 var me = this;
 
                 if (this.getIsVisible()) {
-                    var initCaptchaInterval = setInterval(function () {
-                        if (window.grecaptcha && window.grecaptcha.render) {
-                            clearInterval(initCaptchaInterval);
+                    if (window.grecaptcha && window.grecaptcha.render) { // Check if recaptcha is already loaded
+                        me.initCaptcha();
+                    } else { // Wait for recaptcha to be loaded
+                        $(window).on('recaptchaapiready', function () {
                             me.initCaptcha();
-                        }
-                    }, 100);
+                        });
+                    }
                 }
             },
 
