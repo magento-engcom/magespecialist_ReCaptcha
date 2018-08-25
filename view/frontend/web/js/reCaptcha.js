@@ -81,6 +81,17 @@ define(
             },
 
             /**
+             * Checking that reCaptcha is invisible type
+             * @returns {Boolean}
+             */
+            getIsInvisibleRecaptcha: function () {
+                if (this.settings.size !== 'invisible') {
+                    return true;
+                }
+                return false;
+            },
+
+            /**
              * Recaptcha callback
              * @param {String} token
              */
@@ -131,6 +142,10 @@ define(
                     'badge': this.badge ? this.badge : this.settings.badge,
                     'callback': function (token) { // jscs:ignore jsDoc
                         me.reCaptchaCallback(token);
+                        me.validateReCaptcha(true);
+                    },
+                    'expired-callback': function () {
+                        me.validateReCaptcha(false);
                     }
                 });
 
@@ -160,6 +175,14 @@ define(
                 registry.captchaList.push(widgetId);
                 registry.tokenFields.push(this.tokenField);
 
+            },
+
+
+            validateReCaptcha: function(state){
+                if (this.settings.size !== 'invisible') {
+                    return $(document).find('input[type=checkbox].required-captcha').prop( "checked", state );
+                }
+                return;
             },
 
             /**
