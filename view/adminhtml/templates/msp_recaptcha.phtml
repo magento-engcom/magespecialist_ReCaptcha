@@ -23,9 +23,9 @@
 <?php if ($block->canDisplayCaptcha()) : ?>
 <div class="admin__field field-recaptcha">
     <div class="g-recaptcha"
-         data-sitekey="<?php echo $block->getPublicKey() ?>"
-         data-size="<?php echo $block->getSize() ?>"
-         data-theme="<?php echo $block->getTheme() ?>"
+         data-sitekey="<?= $block->escapeHtml($block->getPublicKey()) ?>"
+         data-size="<?= $block->escapeJs($block->getSize()) ?>"
+         data-theme="<?= $block->escapeJs($block->getTheme()) ?>"
     ></div>
 </div>
 <?php endif; ?>
