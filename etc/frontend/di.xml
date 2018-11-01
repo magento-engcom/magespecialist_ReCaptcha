@@ -177,17 +177,11 @@
     </type>
 
     <!-- Review Form -->
-    <virtualType name="MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl\ReviewForm"
-                 type="MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl\SimpleUrlProvider">
-        <arguments>
-            <argument name="urlPath" xsi:type="string">*/*/*</argument>
-        </arguments>
-    </virtualType>
     <virtualType name="MSP\ReCaptcha\Model\Provider\Failure\ReviewFormObserver"
                  type="MSP\ReCaptcha\Model\Provider\Failure\ObserverRedirectFailure">
         <arguments>
             <argument name="redirectUrlProvider"
-                      xsi:type="object">MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl\ReviewForm</argument>
+                      xsi:type="object">MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl\RefererProvider</argument>
         </arguments>
     </virtualType>
     <virtualType name="MSP\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\ReviewForm"
