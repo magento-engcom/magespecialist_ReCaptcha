@@ -112,7 +112,10 @@ class Config
             return false;
         }
 
-        return (bool) $this->scopeConfig->getValue(static::XML_PATH_ENABLED_FRONTEND);
+        return (bool) $this->scopeConfig->getValue(
+            static::XML_PATH_ENABLED_FRONTEND,
+            ScopeInterface::SCOPE_WEBSITE
+        );
     }
 
     /**
@@ -125,7 +128,10 @@ class Config
             return false;
         }
 
-        return (bool) $this->scopeConfig->getValue(static::XML_PATH_ENABLED_FRONTEND_LOGIN);
+        return (bool) $this->scopeConfig->getValue(
+            static::XML_PATH_ENABLED_FRONTEND_LOGIN,
+            ScopeInterface::SCOPE_WEBSITE
+        );
     }
 
     /**
@@ -138,7 +144,10 @@ class Config
             return false;
         }
 
-        return (bool) $this->scopeConfig->getValue(static::XML_PATH_ENABLED_FRONTEND_FORGOT);
+        return (bool) $this->scopeConfig->getValue(
+            static::XML_PATH_ENABLED_FRONTEND_FORGOT,
+            ScopeInterface::SCOPE_WEBSITE
+        );
     }
 
     /**
@@ -151,7 +160,10 @@ class Config
             return false;
         }
 
-        return (bool) $this->scopeConfig->getValue(static::XML_PATH_ENABLED_FRONTEND_CONTACT);
+        return (bool) $this->scopeConfig->getValue(
+            static::XML_PATH_ENABLED_FRONTEND_CONTACT,
+            ScopeInterface::SCOPE_WEBSITE
+        );
     }
 
     /**
@@ -164,7 +176,10 @@ class Config
             return false;
         }
 
-        return (bool) $this->scopeConfig->getValue(static::XML_PATH_ENABLED_FRONTEND_CREATE);
+        return (bool) $this->scopeConfig->getValue(
+            static::XML_PATH_ENABLED_FRONTEND_CREATE,
+            ScopeInterface::SCOPE_WEBSITE
+        );
     }
 
     /**
@@ -177,7 +192,10 @@ class Config
             return 'invisible';
         }
 
-        return $this->scopeConfig->getValue(static::XML_PATH_SIZE_FRONTEND);
+        return $this->scopeConfig->getValue(
+            static::XML_PATH_SIZE_FRONTEND,
+            ScopeInterface::SCOPE_WEBSITE
+        );
     }
 
     /**
@@ -199,7 +217,10 @@ class Config
             return null;
         }
 
-        return $this->scopeConfig->getValue(static::XML_PATH_THEME_FRONTEND);
+        return $this->scopeConfig->getValue(
+            static::XML_PATH_THEME_FRONTEND,
+            ScopeInterface::SCOPE_WEBSITE
+        );
     }
 
     /**
@@ -221,7 +242,10 @@ class Config
             return null;
         }
 
-        return $this->scopeConfig->getValue(static::XML_PATH_POSITION_FRONTEND);
+        return $this->scopeConfig->getValue(
+            static::XML_PATH_POSITION_FRONTEND,
+            ScopeInterface::SCOPE_WEBSITE
+        );
     }
 
     /**
@@ -230,7 +254,10 @@ class Config
      */
     public function getFrontendType()
     {
-        return $this->scopeConfig->getValue(static::XML_PATH_TYPE_FRONTEND);
+        return $this->scopeConfig->getValue(
+            static::XML_PATH_TYPE_FRONTEND,
+            ScopeInterface::SCOPE_WEBSITE
+        );
     }
 
     /**
@@ -239,6 +266,9 @@ class Config
      */
     public function getLanguageCode()
     {
-        return $this->scopeConfig->getValue(static::XML_PATH_LANGUAGE_CODE, ScopeInterface::SCOPE_STORE);
+        return $this->scopeConfig->getValue(
+            static::XML_PATH_LANGUAGE_CODE,
+            ScopeInterface::SCOPE_STORE
+        );
     }
 }
