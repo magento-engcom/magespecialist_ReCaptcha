@@ -5,6 +5,9 @@
     "require": {
         "php": "^5.6|^7.0|^7.1|^7.2",
         "magento/magento-composer-installer": "*",
+        "magento/module-customer": "*",
+        "magento/module-checkout": "*",
+        "magento/module-newsletter": "*",
         "google/recaptcha": "^1.1"
     },
     "suggest": {

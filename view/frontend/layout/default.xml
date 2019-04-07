@@ -30,8 +30,8 @@
                         <item name="authenticationPopup" xsi:type="array">
                             <item name="children" xsi:type="array">
                                 <item name="msp_recaptcha" xsi:type="array">
-                                    <item name="component" xsi:type="string">MSP_ReCaptcha/js/reCaptcha</item>
-                                    <item name="displayArea" xsi:type="string">additional-login-form-fields</item>
+                                    <item name="component" xsi:type="string"></item>
+                                    <item name="displayArea" xsi:type="string"></item>
                                     <item name="configSource" xsi:type="string">checkoutConfig</item>
                                     <item name="reCaptchaId" xsi:type="string">msp-recaptcha-popup-login</item>
                                     <item name="zone" xsi:type="string">login</item>
