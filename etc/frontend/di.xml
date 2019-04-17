@@ -175,4 +175,30 @@
         <plugin sortOrder="1" name="mSPReCaptchaAuthenticationPopup"
                 type="MSP\ReCaptcha\Plugin\Block\Account\AuthenticationPopupPlugin"/>
     </type>
+
+    <!-- Review Form -->
+    <virtualType name="MSP\ReCaptcha\Model\Provider\Failure\ReviewFormObserver"
+                 type="MSP\ReCaptcha\Model\Provider\Failure\ObserverRedirectFailure">
+        <arguments>
+            <argument name="redirectUrlProvider"
+                      xsi:type="object">MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl\RefererProvider</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="MSP\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\ReviewForm"
+                 type="MSP\ReCaptcha\Model\IsCheckRequired">
+        <arguments>
+            <argument name="enableConfigFlag"
+                      xsi:type="string">msp_securitysuite_recaptcha/frontend/enabled_review</argument>
+            <argument name="area" xsi:type="string">frontend</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="MSP\ReCaptcha\Observer\Frontend\ReviewFormObserver"
+                 type="MSP\ReCaptcha\Observer\ReCaptchaObserver">
+        <arguments>
+            <argument name="isCheckRequired"
+                      xsi:type="object">MSP\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\ReviewForm</argument>
+            <argument name="failureProvider"
+                      xsi:type="object">MSP\ReCaptcha\Model\Provider\Failure\ReviewFormObserver</argument>
+        </arguments>
+    </virtualType>
 </config>

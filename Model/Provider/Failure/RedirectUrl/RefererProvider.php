@@ -1,3 +1,4 @@
+<?php
 /**
  * MageSpecialist
  *
@@ -17,24 +18,34 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-.login-container, .form-login {
-    .g-recaptcha {
-        margin-bottom: 10px !important;
+namespace MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl;
+
+use MSP\ReCaptcha\Model\Provider\Failure\RedirectUrlProviderInterface;
+use Magento\Framework\App\Response\RedirectInterface;
+
+class RefererProvider implements RedirectUrlProviderInterface
+{
+    /**
+     * @var RedirectInterface
+     */
+    private $redirect;
+    
+    /**
+     * RefererProvider constructor.
+     * @param RedirectInterface $redirect
+     */
+    public function __construct(
+        RedirectInterface $redirect
+    ) {
+        $this->redirect = $redirect;
     }
-}
 
-.required-captcha.checkbox{
-	position: absolute;
-    display: block;
-    visibility: visible;
-    overflow: hidden;
-    opacity: 0;
-    width: 1px;
-    height: 1px;
-}
-
-.review-form {
-    .field-recaptcha {
-        margin-bottom: 10px;
+    /**
+     * Get redirection URL
+     * @return string
+     */
+    public function execute()
+    {
+        return $this->redirect->getRedirectUrl();
     }
 }
