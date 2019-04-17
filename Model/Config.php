@@ -18,6 +18,8 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
+declare(strict_types=1);
+
 namespace MSP\ReCaptcha\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -27,27 +29,27 @@ use MSP\ReCaptcha\Model\Config\Source\Type;
 
 class Config
 {
-    const XML_PATH_ENABLED_BACKEND = 'msp_securitysuite_recaptcha/backend/enabled';
-    const XML_PATH_ENABLED_FRONTEND = 'msp_securitysuite_recaptcha/frontend/enabled';
+    public const XML_PATH_ENABLED_BACKEND = 'msp_securitysuite_recaptcha/backend/enabled';
+    public const XML_PATH_ENABLED_FRONTEND = 'msp_securitysuite_recaptcha/frontend/enabled';
 
-    const XML_PATH_TYPE_FRONTEND = 'msp_securitysuite_recaptcha/frontend/type';
-    const XML_PATH_LANGUAGE_CODE = 'msp_securitysuite_recaptcha/frontend/lang';
+    public const XML_PATH_TYPE_FRONTEND = 'msp_securitysuite_recaptcha/frontend/type';
+    public const XML_PATH_LANGUAGE_CODE = 'msp_securitysuite_recaptcha/frontend/lang';
 
-    const XML_PATH_POSITION_FRONTEND = 'msp_securitysuite_recaptcha/frontend/position';
+    public const XML_PATH_POSITION_FRONTEND = 'msp_securitysuite_recaptcha/frontend/position';
 
-    const XML_PATH_SIZE_BACKEND = 'msp_securitysuite_recaptcha/backend/size';
-    const XML_PATH_SIZE_FRONTEND = 'msp_securitysuite_recaptcha/frontend/size';
-    const XML_PATH_THEME_BACKEND = 'msp_securitysuite_recaptcha/backend/theme';
-    const XML_PATH_THEME_FRONTEND = 'msp_securitysuite_recaptcha/frontend/theme';
+    public const XML_PATH_SIZE_BACKEND = 'msp_securitysuite_recaptcha/backend/size';
+    public const XML_PATH_SIZE_FRONTEND = 'msp_securitysuite_recaptcha/frontend/size';
+    public const XML_PATH_THEME_BACKEND = 'msp_securitysuite_recaptcha/backend/theme';
+    public const XML_PATH_THEME_FRONTEND = 'msp_securitysuite_recaptcha/frontend/theme';
 
-    const XML_PATH_PUBLIC_KEY = 'msp_securitysuite_recaptcha/general/public_key';
-    const XML_PATH_PRIVATE_KEY = 'msp_securitysuite_recaptcha/general/private_key';
+    public const XML_PATH_PUBLIC_KEY = 'msp_securitysuite_recaptcha/general/public_key';
+    public const XML_PATH_PRIVATE_KEY = 'msp_securitysuite_recaptcha/general/private_key';
 
-    const XML_PATH_ENABLED_FRONTEND_LOGIN = 'msp_securitysuite_recaptcha/frontend/enabled_login';
-    const XML_PATH_ENABLED_FRONTEND_FORGOT = 'msp_securitysuite_recaptcha/frontend/enabled_forgot';
-    const XML_PATH_ENABLED_FRONTEND_CONTACT = 'msp_securitysuite_recaptcha/frontend/enabled_contact';
-    const XML_PATH_ENABLED_FRONTEND_CREATE = 'msp_securitysuite_recaptcha/frontend/enabled_create';
-    const XML_PATH_ENABLED_FRONTEND_REVIEW = 'msp_securitysuite_recaptcha/frontend/enabled_review';
+    public const XML_PATH_ENABLED_FRONTEND_LOGIN = 'msp_securitysuite_recaptcha/frontend/enabled_login';
+    public const XML_PATH_ENABLED_FRONTEND_FORGOT = 'msp_securitysuite_recaptcha/frontend/enabled_forgot';
+    public const XML_PATH_ENABLED_FRONTEND_CONTACT = 'msp_securitysuite_recaptcha/frontend/enabled_contact';
+    public const XML_PATH_ENABLED_FRONTEND_CREATE = 'msp_securitysuite_recaptcha/frontend/enabled_create';
+    public const XML_PATH_ENABLED_FRONTEND_REVIEW = 'msp_securitysuite_recaptcha/frontend/enabled_review';
 
     /**
      * @var ScopeConfigInterface
@@ -172,7 +174,7 @@ class Config
      * Return true if enabled on frontend review
      * @return bool
      */
-    public function isEnabledFrontendReview()
+    public function isEnabledFrontendReview(): bool
     {
         if (!$this->isEnabledFrontend()) {
             return false;
@@ -187,7 +189,7 @@ class Config
      */
     public function getFrontendSize()
     {
-        if ($this->getFrontendType() == Type::TYPE_INVISIBLE) {
+        if ($this->getFrontendType() === Type::TYPE_INVISIBLE) {
             return 'invisible';
         }
 
@@ -209,7 +211,7 @@ class Config
      */
     public function getFrontendTheme()
     {
-        if ($this->getFrontendType() == Type::TYPE_INVISIBLE) {
+        if ($this->getFrontendType() === Type::TYPE_INVISIBLE) {
             return null;
         }
 
@@ -231,7 +233,7 @@ class Config
      */
     public function getFrontendPosition()
     {
-        if ($this->getFrontendType() != Type::TYPE_INVISIBLE) {
+        if ($this->getFrontendType() !== Type::TYPE_INVISIBLE) {
             return null;
         }
 
