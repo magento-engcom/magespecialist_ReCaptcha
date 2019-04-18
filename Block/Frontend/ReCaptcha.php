@@ -81,7 +81,7 @@ class ReCaptcha extends Template
             $layout['components']['msp-recaptcha']['settings'] = $this->layoutSettings->getCaptchaSettings();
         }
         
-        if(isset($layout['components']['msp-recaptcha']) && !$this->config->isEnabledFrontend()) {
+        if (isset($layout['components']['msp-recaptcha']) && !$this->config->isEnabledFrontend()) {
             unset($layout['components']['msp-recaptcha']);
         }
 

@@ -26,6 +26,7 @@
         <referenceContainer name="form.additional.info">
             <block class="MSP\ReCaptcha\Block\Frontend\ReCaptcha" name="msp-recaptcha" after="-"
                    template="MSP_ReCaptcha::msp_recaptcha.phtml"
+                   cacheable="false"
                    ifconfig="msp_securitysuite_recaptcha/frontend/enabled">
 
                 <arguments>

@@ -85,10 +85,7 @@ define(
              * @returns {Boolean}
              */
             getIsInvisibleRecaptcha: function () {
-                if (this.settings.size !== 'invisible') {
-                    return true;
-                }
-                return false;
+                return this.settings.size !== 'invisible';
             },
 
             /**
@@ -182,7 +179,6 @@ define(
                 if (this.settings.size !== 'invisible') {
                     return $(document).find('input[type=checkbox].required-captcha').prop( "checked", state );
                 }
-                return;
             },
 
             /**
