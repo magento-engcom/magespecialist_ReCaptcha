@@ -80,7 +80,7 @@ class Config
      */
     public function getPublicKey()
     {
-        return trim($this->scopeConfig->getValue(static::XML_PATH_PUBLIC_KEY));
+        return trim($this->scopeConfig->getValue(static::XML_PATH_PUBLIC_KEY, ScopeInterface::SCOPE_WEBSITE));
     }
 
     /**
@@ -89,7 +89,7 @@ class Config
      */
     public function getPrivateKey()
     {
-        return trim($this->scopeConfig->getValue(static::XML_PATH_PRIVATE_KEY));
+        return trim($this->scopeConfig->getValue(static::XML_PATH_PRIVATE_KEY, ScopeInterface::SCOPE_WEBSITE));
     }
 
     /**
