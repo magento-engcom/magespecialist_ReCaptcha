@@ -195,7 +195,10 @@ class Config
             return false;
         }
 
-        return (bool) $this->scopeConfig->getValue(static::XML_PATH_ENABLED_FRONTEND_REVIEW);
+        return (bool) $this->scopeConfig->getValue(
+            static::XML_PATH_ENABLED_FRONTEND_REVIEW,
+            ScopeInterface::SCOPE_WEBSITE
+        );
     }
 
     /**
