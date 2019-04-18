@@ -43,7 +43,7 @@
                 </argument>
             </arguments>
         </referenceBlock>
-        <referenceContainer name="content">
+        <referenceContainer name="footer">
             <block class="MSP\ReCaptcha\Block\Frontend\ReCaptcha"
                    name="msp-recaptcha-newsletter"
                    after="-"
