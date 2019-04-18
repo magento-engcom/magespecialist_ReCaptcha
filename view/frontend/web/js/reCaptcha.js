@@ -29,7 +29,8 @@ define(
         return Component.extend({
 
             defaults: {
-                template: 'MSP_ReCaptcha/reCaptcha'
+                template: 'MSP_ReCaptcha/reCaptcha',
+                reCaptchaId: 'msp-recaptcha'
             },
             _isApiRegistered: undefined,
 
@@ -203,10 +204,6 @@ define(
              * @returns {String}
              */
             getReCaptchaId: function () {
-                if (!this.reCaptchaId) {
-                    return 'msp-recaptcha';
-                }
-
                 return this.reCaptchaId;
             }
         });

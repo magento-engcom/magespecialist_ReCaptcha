@@ -43,8 +43,11 @@
                 </argument>
             </arguments>
         </referenceBlock>
-        <referenceBlock name="form.subscribe">
-            <block class="MSP\ReCaptcha\Block\Frontend\ReCaptcha" name="msp-recaptcha-newsletter" after="-" template="MSP_ReCaptcha::msp_recaptcha.phtml">
+        <referenceContainer name="content">
+            <block class="MSP\ReCaptcha\Block\Frontend\ReCaptcha"
+                   name="msp-recaptcha-newsletter"
+                   after="-"
+                   template="MSP_ReCaptcha::msp_recaptcha_newsletter.phtml">
                 <arguments>
                     <argument name="jsLayout" xsi:type="array">
                         <item name="components" xsi:type="array">
@@ -61,6 +64,6 @@
                     </argument>
                 </arguments>
             </block>
-        </referenceBlock>
+        </referenceContainer>
     </body>
 </page>

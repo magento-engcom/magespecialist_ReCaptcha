@@ -71,6 +71,14 @@ class ReCaptcha extends Template
     }
 
     /**
+     * Get current recaptcha ID
+     */
+    public function getRecaptchaId(): string
+    {
+        return (string) $this->getData('recaptcha_id') ?: 'msp-recaptcha-' . md5($this->getNameInLayout());
+    }
+
+    /**
      * @inheritdoc
      */
     public function getJsLayout()
@@ -78,11 +86,18 @@ class ReCaptcha extends Template
         $layout = Json::decode(parent::getJsLayout(), Json::TYPE_ARRAY);
 
         if ($this->config->isEnabledFrontend()) {
-            $layout['components']['msp-recaptcha']['settings'] = $this->layoutSettings->getCaptchaSettings();
-        }
-        
-        if (isset($layout['components']['msp-recaptcha']) && !$this->config->isEnabledFrontend()) {
-            unset($layout['components']['msp-recaptcha']);
+            // Backward compatibility with fixed scope name
+            if (isset($layout['components']['msp-recaptcha'])) {
+                $layout['components'][$this->getRecaptchaId()] = $layout['components']['msp-recaptcha'];
+                unset($layout['components']['msp-recaptcha']);
+            }
+
+            $layout['components'][$this->getRecaptchaId()]['settings'] = array_replace_recursive(
+                $this->layoutSettings->getCaptchaSettings(),
+                $layout['components'][$this->getRecaptchaId()]['settings'] ?? []
+            );
+
+            $layout['components'][$this->getRecaptchaId()]['reCaptchaId'] = $this->getRecaptchaId();
         }
 
         return Json::encode($layout);

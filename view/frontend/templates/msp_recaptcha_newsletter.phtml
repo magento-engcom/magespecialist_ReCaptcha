@@ -28,6 +28,13 @@
     <!-- ko template: getTemplate() --><!-- /ko -->
 </div>
 
+<script type="text/javascript">
+    require(['jquery', 'domReady!'], function ($) {
+        $('#<?= /* @noEscape */ $block->getRecaptchaId() ?>-container')
+            .appendTo('#newsletter-validate-detail');
+    });
+</script>
+
 <script type="text/x-magento-init">
 {
     "#<?= /* @noEscape */ $block->getRecaptchaId() ?>-container": {
