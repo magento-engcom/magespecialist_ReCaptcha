@@ -20,6 +20,7 @@
 
 namespace MSP\ReCaptcha\Block\Frontend;
 
+use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Json\DecoderInterface;
 use Magento\Framework\Json\EncoderInterface;
 use Magento\Framework\View\Element\Template;
@@ -55,24 +56,28 @@ class ReCaptcha extends Template
 
     /**
      * ReCaptcha constructor.
+     *
      * @param Template\Context $context
      * @param DecoderInterface $decoder
      * @param EncoderInterface $encoder
      * @param LayoutSettings $layoutSettings
      * @param array $data
+     * @param Config|null $config
      */
     public function __construct(
         Template\Context $context,
         DecoderInterface $decoder,
         EncoderInterface $encoder,
         LayoutSettings $layoutSettings,
-        array $data = []
+        array $data = [],
+        Config $config = null
     ) {
         parent::__construct($context, $data);
         $this->data = $data;
         $this->decoder = $decoder;
         $this->encoder = $encoder;
         $this->layoutSettings = $layoutSettings;
+        $this->config = $config ?: ObjectManager::getInstance()->get(Config::class);
     }
 
     /**
@@ -90,7 +95,15 @@ class ReCaptcha extends Template
     public function getJsLayout()
     {
         $layout = $this->decoder->decode(parent::getJsLayout());
-        $layout['components']['msp-recaptcha']['settings'] = $this->layoutSettings->getCaptchaSettings();
+
+        if ($this->config->isEnabledFrontend()) {
+            $layout['components']['msp-recaptcha']['settings'] = $this->layoutSettings->getCaptchaSettings();
+        }
+        
+        if(!$this->config->isEnabledFrontend() && isset($layout['components']['msp-recaptcha'])) {
+            unset($layout['components']['msp-recaptcha']);
+        }
+
         return $this->encoder->encode($layout);
     }
 }
