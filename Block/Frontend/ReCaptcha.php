@@ -18,14 +18,15 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
+declare(strict_types=1);
+
 namespace MSP\ReCaptcha\Block\Frontend;
 
 use Magento\Framework\App\ObjectManager;
-use Magento\Framework\Json\DecoderInterface;
-use Magento\Framework\Json\EncoderInterface;
 use Magento\Framework\View\Element\Template;
 use MSP\ReCaptcha\Model\Config;
 use MSP\ReCaptcha\Model\LayoutSettings;
+use Zend\Json\Json;
 
 class ReCaptcha extends Template
 {
@@ -35,47 +36,27 @@ class ReCaptcha extends Template
     private $config;
 
     /**
-     * @var array
-     */
-    private $data;
-
-    /**
-     * @var DecoderInterface
-     */
-    private $decoder;
-
-    /**
-     * @var EncoderInterface
-     */
-    private $encoder;
-
-    /**
      * @var LayoutSettings
      */
     private $layoutSettings;
 
     /**
-     * ReCaptcha constructor.
-     *
      * @param Template\Context $context
-     * @param DecoderInterface $decoder
-     * @param EncoderInterface $encoder
+     * @param null $decoder @deprecated
+     * @param null $encoder @deprecated
      * @param LayoutSettings $layoutSettings
      * @param array $data
      * @param Config|null $config
      */
     public function __construct(
         Template\Context $context,
-        DecoderInterface $decoder,
-        EncoderInterface $encoder,
+        $decoder,
+        $encoder,
         LayoutSettings $layoutSettings,
         array $data = [],
         Config $config = null
     ) {
         parent::__construct($context, $data);
-        $this->data = $data;
-        $this->decoder = $decoder;
-        $this->encoder = $encoder;
         $this->layoutSettings = $layoutSettings;
         $this->config = $config ?: ObjectManager::getInstance()->get(Config::class);
     }
@@ -94,16 +75,16 @@ class ReCaptcha extends Template
      */
     public function getJsLayout()
     {
-        $layout = $this->decoder->decode(parent::getJsLayout());
+        $layout = Json::decode(parent::getJsLayout(), Json::TYPE_ARRAY);
 
         if ($this->config->isEnabledFrontend()) {
             $layout['components']['msp-recaptcha']['settings'] = $this->layoutSettings->getCaptchaSettings();
         }
         
-        if(!$this->config->isEnabledFrontend() && isset($layout['components']['msp-recaptcha'])) {
+        if(isset($layout['components']['msp-recaptcha']) && !$this->config->isEnabledFrontend()) {
             unset($layout['components']['msp-recaptcha']);
         }
 
-        return $this->encoder->encode($layout);
+        return Json::encode($layout);
     }
 }

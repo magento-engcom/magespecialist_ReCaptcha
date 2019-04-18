@@ -18,6 +18,8 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
+declare(strict_types=1);
+
 namespace MSP\ReCaptcha\Block\LayoutProcessor\Checkout;
 
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
@@ -59,7 +61,7 @@ class Onepage implements LayoutProcessorInterface
      */
     public function process($jsLayout)
     {
-        if($this->config->isEnabledFrontend()) {
+        if ($this->config->isEnabledFrontend()) {
             $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
                 ['shippingAddress']['children']['customer-email']['children']
                 ['msp_recaptcha']['settings'] = $this->layoutSettings->getCaptchaSettings();
@@ -68,14 +70,14 @@ class Onepage implements LayoutProcessorInterface
                 ['msp_recaptcha']['settings'] = $this->layoutSettings->getCaptchaSettings();
         }
 
-        if(!$this->config->isEnabledFrontend()) {
-            if(isset($jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
+        if (!$this->config->isEnabledFrontend()) {
+            if (isset($jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
                 ['shippingAddress']['children']['customer-email']['children']['msp_recaptcha'])) {
                 unset($jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
                     ['shippingAddress']['children']['customer-email']['children']['msp_recaptcha']);
             }
 
-            if(isset($jsLayout['components']['checkout']['children']['authentication']['children']['msp_recaptcha'])) {
+            if (isset($jsLayout['components']['checkout']['children']['authentication']['children']['msp_recaptcha'])) {
                 unset($jsLayout['components']['checkout']['children']['authentication']['children']['msp_recaptcha']);
             }
         }
