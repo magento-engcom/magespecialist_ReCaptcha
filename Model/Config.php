@@ -18,8 +18,6 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-declare(strict_types=1);
-
 namespace MSP\ReCaptcha\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -50,6 +48,7 @@ class Config
     public const XML_PATH_ENABLED_FRONTEND_CONTACT = 'msp_securitysuite_recaptcha/frontend/enabled_contact';
     public const XML_PATH_ENABLED_FRONTEND_CREATE = 'msp_securitysuite_recaptcha/frontend/enabled_create';
     public const XML_PATH_ENABLED_FRONTEND_REVIEW = 'msp_securitysuite_recaptcha/frontend/enabled_review';
+    public const XML_PATH_ENABLED_FRONTEND_NEWSLETTER = 'msp_securitysuite_recaptcha/frontend/enabled_newsletter';
 
     /**
      * @var ScopeConfigInterface
@@ -197,6 +196,22 @@ class Config
 
         return (bool) $this->scopeConfig->getValue(
             static::XML_PATH_ENABLED_FRONTEND_REVIEW,
+            ScopeInterface::SCOPE_WEBSITE
+        );
+    }
+
+    /**
+     * Return true if enabled on frontend newsletter
+     * @return bool
+     */
+    public function isEnabledFrontendNewsletter(): bool
+    {
+        if (!$this->isEnabledFrontend()) {
+            return false;
+        }
+
+        return (bool) $this->scopeConfig->getValue(
+            static::XML_PATH_ENABLED_FRONTEND_NEWSLETTER,
             ScopeInterface::SCOPE_WEBSITE
         );
     }
