@@ -182,6 +182,8 @@
         <arguments>
             <argument name="isCheckRequired"
                       xsi:type="object">MSP\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\SendFriendForm</argument>
+            <argument name="responseProvider"
+                      xsi:type="object">MSP\ReCaptcha\Model\Provider\Response\DefaultResponseProvider</argument>
             <argument name="failureProvider"
                       xsi:type="object">MSP\ReCaptcha\Model\Provider\Failure\SendFriendObserver</argument>
         </arguments>
@@ -190,7 +192,7 @@
                  type="MSP\ReCaptcha\Model\IsCheckRequired">
         <arguments>
             <argument name="enableConfigFlag"
-                      xsi:type="string">msp_securitysuite_recaptcha/frontend/enabled_contact</argument>
+                      xsi:type="string">msp_securitysuite_recaptcha/frontend/enabled_sendfriend</argument>
             <argument name="area" xsi:type="string">frontend</argument>
         </arguments>
     </virtualType>
