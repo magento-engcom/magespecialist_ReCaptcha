@@ -227,7 +227,10 @@ class Config
             return false;
         }
 
-        return (bool) $this->scopeConfig->getValue(static::XML_PATH_ENABLED_FRONTEND_SENDFRIEND);
+        return (bool) $this->scopeConfig->getValue(
+            static::XML_PATH_ENABLED_FRONTEND_SENDFRIEND,
+            ScopeInterface::SCOPE_WEBSITE
+        );
     }
 
     /**
