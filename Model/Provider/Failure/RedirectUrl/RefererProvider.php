@@ -18,8 +18,6 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-declare(strict_types=1);
-
 namespace MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl;
 
 use MSP\ReCaptcha\Model\Provider\Failure\RedirectUrlProviderInterface;

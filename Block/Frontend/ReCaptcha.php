@@ -18,8 +18,6 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-declare(strict_types=1);
-
 namespace MSP\ReCaptcha\Block\Frontend;
 
 use Magento\Framework\App\ObjectManager;
@@ -73,7 +71,7 @@ class ReCaptcha extends Template
     /**
      * Get current recaptcha ID
      */
-    public function getRecaptchaId(): string
+    public function getRecaptchaId()
     {
         return (string) $this->getData('recaptcha_id') ?: 'msp-recaptcha-' . md5($this->getNameInLayout());
     }
@@ -92,9 +90,13 @@ class ReCaptcha extends Template
                 unset($layout['components']['msp-recaptcha']);
             }
 
+            $recaptchaComponentSettings = [];
+            if (isset($layout['components'][$this->getRecaptchaId()]['settings'])) {
+                $recaptchaComponentSettings = $layout['components'][$this->getRecaptchaId()]['settings'];
+            }
             $layout['components'][$this->getRecaptchaId()]['settings'] = array_replace_recursive(
                 $this->layoutSettings->getCaptchaSettings(),
-                $layout['components'][$this->getRecaptchaId()]['settings'] ?? []
+                $recaptchaComponentSettings
             );
 
             $layout['components'][$this->getRecaptchaId()]['reCaptchaId'] = $this->getRecaptchaId();

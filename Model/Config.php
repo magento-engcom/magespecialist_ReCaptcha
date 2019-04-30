@@ -188,7 +188,7 @@ class Config
      * Return true if enabled on frontend review
      * @return bool
      */
-    public function isEnabledFrontendReview(): bool
+    public function isEnabledFrontendReview()
     {
         if (!$this->isEnabledFrontend()) {
             return false;
@@ -204,7 +204,7 @@ class Config
      * Return true if enabled on frontend newsletter
      * @return bool
      */
-    public function isEnabledFrontendNewsletter(): bool
+    public function isEnabledFrontendNewsletter()
     {
         if (!$this->isEnabledFrontend()) {
             return false;
