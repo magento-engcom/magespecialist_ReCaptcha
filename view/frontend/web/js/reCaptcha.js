@@ -86,7 +86,7 @@ define(
              * @returns {Boolean}
              */
             getIsInvisibleRecaptcha: function () {
-                return this.settings.size !== 'invisible';
+                return this.settings.size === 'invisible';
             },
 
             /**
