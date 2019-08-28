@@ -78,6 +78,10 @@ class Validate implements ValidateInterface
             }
             $res = $reCaptcha->verify($reCaptchaResponse, $remoteIp);
 
+            if (($this->config->getType() === 'recaptcha_v3') && ($res->getScore() === null)) {
+                throw new LocalizedException(__('Internal error: Make sure you are using reCaptcha V3 api keys'));
+            }
+
             if ($res->isSuccess()) {
                 return true;
             }

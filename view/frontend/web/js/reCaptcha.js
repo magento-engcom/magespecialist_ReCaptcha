@@ -151,7 +151,7 @@ define(
                     $parentForm.submit(function (event) {
                         if (!me.tokenField.value) {
                             // eslint-disable-next-line no-undef
-                            grecaptcha.execute(widgetId, {action: this.zone});
+                            grecaptcha.execute(widgetId);
                             event.preventDefault(event);
                             event.stopImmediatePropagation();
                         }
