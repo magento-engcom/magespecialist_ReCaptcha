@@ -11,7 +11,7 @@ Did you lock yourself out from Magento backend? <a href="https://github.com/mage
 ## Installing on Magento2:
 
 **1. Install using composer**
-
+yuj
 From command line: 
 
 ```
